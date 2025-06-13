@@ -1,13 +1,13 @@
 ### 📄 `README.md`
 
 ````markdown
-# 🧾 Streamlit Bill Generator using Word Template
+🧾Streamlit Bill Generator using Word Template
 
 This project is a simple and customizable Bill Generator built using **Streamlit** and **python-docx**. It allows users to fill in billing details through a web form and generates a downloadable `.docx` invoice based on a predesigned Word template.
 
 ---
 
-## ✅ Features
+ ✅ Features
 
 - Generate professional tax invoices in `.docx` format
 - Uses a Word (.docx) template with `{{placeholders}}` for customization
@@ -31,7 +31,7 @@ This project is a simple and customizable Bill Generator built using **Streamlit
 
 ---
 
-## 🚀 How to Run
+🚀 How to Run
 
 1. **Install required libraries**:
 
