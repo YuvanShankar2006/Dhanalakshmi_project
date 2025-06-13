@@ -19,7 +19,7 @@ def replace_in_paragraphs(paragraphs, data):
                 run.text = ""
             if p.runs:
                 p.runs[0].text = replaced
-def generate_bill_docx(data, bill_filename, template_path="Dhanalakshmi_new_bill.docx"):
+def generate_bill_docx(data, bill_filename, template_path):
     doc = Document(template_path)
     replace_in_paragraphs(doc.paragraphs, data)
 
@@ -38,6 +38,7 @@ def generate_bill_docx(data, bill_filename, template_path="Dhanalakshmi_new_bill
 st.title("🧾 Bill Generator")
 
 with st.form("bill_form"):
+    choice=st.radio("Which company are you generating the Bill For ?",("Yuvan Traders","Dhanalakshmi Traders"))
     bill_no = st.text_input("Bill Number")
     date = st.date_input("Date")
     from_location = st.text_input("From Location")
@@ -74,6 +75,10 @@ if submitted:
     grand_total = tamount + cgst_value + sgst_value +igst_value
     date_str = date.strftime("%d/%m/%Y")
     total_in_words = convert_number_to_words(str(grand_total))
+    if choice=="Dhanalakshmi Traders":
+        choice="Dhanalakshmi_new_bill.docx"
+    else:
+        choice="YuvanTraders_bill.docx"
 
     data = {
         "receiver_name": receiver_name,
@@ -102,7 +107,7 @@ if submitted:
         "disp": dd
     }
     filename = f"bill_{bill_no}"
-    filepath = generate_bill_docx(data, filename)
+    filepath = generate_bill_docx(data, filename,choice)
     st.success("✅ Bill generated successfully!")
 
     with open(filepath, "rb") as f:
@@ -113,6 +118,10 @@ if submitted:
             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         )
     os.remove(filepath)
+
+
+
+
 
 
 
